@@ -9,7 +9,6 @@ import NFT from '../../build/contracts/BrydgeCollection.json'
 import uriList from '../../metadata/data.json'
 
 const MintPage = () => {
-	const [mintedNFT, setMintedNFT] = useState(null)
 	const [miningStatus, setMiningStatus] = useState(null)
 	const [currentAccount, setCurrentAccount] = useState('')
 	const { library } = useEthers()
@@ -87,8 +86,8 @@ const MintPage = () => {
 			) : (
 				<SwapWidget
                 jsonRpcEndpoints={{
-                  1: 'https://mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043',
-                  137: 'https://polygon-mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043',
+                  1: 'https://mainnet.infura.io/v3/{your_infura_key}',
+                  137: 'https://polygon-mainnet.infura.io/v3/{your_infura_key}',
                 }}
 				calls={encodedCalls(idOfNFTToBuy)}
                 provider={library}
