@@ -21,9 +21,9 @@ const mint = () => {
 		const mintableContract = NFT.abi
 		const mintableContractInterface = new ethers.utils.Interface(mintableContract);
 		const mintPrice = ethers.utils.parseEther("0.001")
-		const nftUri = uriList[1]
+		const nftUri = uriList[10]
 		console.log(nftUri)
-		const mintableContractCalldata = mintableContractInterface.encodeFunctionData('mintBrydgeNFT', nftUri);
+		const mintableContractCalldata = mintableContractInterface.encodeFunctionData('mintBrydgeNFT', [nftUri]);
 		const calls = [
 			{ _to: nftContractAddress, _value: mintPrice, _calldata: mintableContractCalldata },
 		  ];
@@ -147,23 +147,6 @@ const mint = () => {
 			<h2 className='text-3xl font-bold mb-20 mt-12'>
 				Mint Brydge NFT
 			</h2>
-			<button
-					className='text-2xl font-bold py-3 px-12 bg-black shadow-lg shadow-[#6FFFE9] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
-					onClick={createICall}
-				>
-					Get Contract Info
-				</button>
-			<SwapWidget
-                jsonRpcEndpoints={{
-                  1: 'https://mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043',
-                  137: 'https://polygon-mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043',
-                }}
-                provider={library}
-                defaultOutputTokenAddress='NATIVE'
-                defaultOutputAmount={0.001}
-                title='Mint Brydge Tutorial NFT'
-                destinationChainId={137}
-              />
 			{currentAccount === '' ? (
 				<button
 					className='text-2xl font-bold py-3 px-12 bg-black shadow-lg shadow-[#6FFFE9] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
@@ -172,12 +155,24 @@ const mint = () => {
 					Connect Wallet
 				</button>
 			) : (
-				<button
-					className='text-2xl font-bold py-3 px-12 bg-black shadow-lg shadow-[#6FFFE9] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
-					onClick={mintCharacter}
-				>
-					Mint Brydge NFT for 0.001 MATIC
-				</button>
+				// <button
+				// 	className='text-2xl font-bold py-3 px-12 bg-black shadow-lg shadow-[#6FFFE9] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
+				// 	onClick={mintCharacter}
+				// >
+				// 	Mint Brydge NFT for 0.001 MATIC
+				// </button>
+				<SwapWidget
+                jsonRpcEndpoints={{
+                  1: 'https://mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043',
+                  137: 'https://polygon-mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043',
+                }}
+				calls={createICall}
+                provider={library}
+                defaultOutputTokenAddress='NATIVE'
+                defaultOutputAmount={0.001}
+                title='Mint Brydge Tutorial NFT'
+                destinationChainId={137}
+              />
 			)}
 			{miningStatus === 1 ? (
 				// 	<img
