@@ -15,7 +15,6 @@ const mint = () => {
 	const [miningStatus, setMiningStatus] = useState(null)
 	const [currentAccount, setCurrentAccount] = useState('')
 	const { library } = useEthers()
-	console.log(library)
 
 	const createICall = async () => {
 		const mintableContract = NFT.abi
