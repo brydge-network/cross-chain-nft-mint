@@ -4,6 +4,6 @@
 
  module.exports = {
     experimental: {
-      esmExternals: false,
+      // esmExternals: false,
     }
   }

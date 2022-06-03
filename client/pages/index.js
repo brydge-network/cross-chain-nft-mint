@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { nftContractAddress } from '../config.js'
 import { ethers } from 'ethers'
 import { useEthers } from '@usedapp/core'
-import { SwapWidget } from '@brydge-network/widget'
+import { BrydgeWidget } from '@brydge-network/widget'
 
 
 import NFT from '../../build/contracts/BrydgeCollection.json'
@@ -12,7 +12,7 @@ const MintPage = () => {
 	const [miningStatus, setMiningStatus] = useState(null)
 	const [currentAccount, setCurrentAccount] = useState('')
 	const { library } = useEthers()
-	const idOfNFTToBuy = 3
+	const idOfNFTToBuy = 1
 
 	function encodedCalls(nftId){
 		const mintableContract = NFT.abi
@@ -84,15 +84,16 @@ const MintPage = () => {
 					Connect Wallet
 				</button>
 			) : (
-				<SwapWidget
+				<BrydgeWidget
+				theme={'darkTheme'}
                 jsonRpcEndpoints={{
-                  1: 'https://mainnet.infura.io/v3/{your_infura_key}',
-                  137: 'https://polygon-mainnet.infura.io/v3/{your_infura_key}',
+                  1: `https://mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043`,
+                  137: 'https://polygon-mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043',
                 }}
 				calls={encodedCalls(idOfNFTToBuy)}
                 provider={library}
-                defaultOutputTokenAddress='NATIVE'
-                defaultOutputAmount={0.001}
+                outputTokenAddress='NATIVE'
+                price={0.001}
                 title='Mint Brydge Tutorial NFT'
                 destinationChainId={137}
               />
