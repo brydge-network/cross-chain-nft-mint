@@ -214,18 +214,18 @@
   resolved "https://registry.yarnpkg.com/@base2/pretty-print-object/-/pretty-print-object-1.0.1.tgz#371ba8be66d556812dc7fb169ebc3c08378f69d4"
   integrity sha512-4iri8i1AqYHJE2DstZYkyEprg6Pq6sKx3xn5FpySk9sNhH7qN2LLlHJCfDTZRILNwQNPD7mATWM0TBui7uC1pA==
 
-"@brydge-network/direct-nft-protocol@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@brydge-network/direct-nft-protocol/-/direct-nft-protocol-1.0.4.tgz#b95296663f585b424a558e6f840644aaf50d60b5"
-  integrity sha512-jvg+MkdeyoDNYZxtjOxfejqgN9OvvOoZxEO/iCEk1dywQ/l7kOJymyZT9yU5gQdq7t4MppDF03KEkN6iGHabDw==
+"@brydge-network/direct-nft-protocol@^1.1.0":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@brydge-network/direct-nft-protocol/-/direct-nft-protocol-1.4.1.tgz#13403b0b8d5f7f77ef0ecba608daa9aa586abefb"
+  integrity sha512-/x8nAmaoOiN969RCSv5gdmw8JSfzHcL+XCVh3VfmSGaz/1ghNsOb4FIXMVgrABEqZj9VQ8eI6zKGzZ2HgcWS/Q==
 
-"@brydge-network/widget@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@brydge-network/widget/-/widget-1.3.0.tgz#dff5840521d6faf03bb1b8f256b30686b28462b9"
-  integrity sha512-LSQds601FSAXiujkV+z11WEkUHrxvrBTiRJrw5FGCtYke1FR6IIdzyiyPZZdnZloZHd+0DO8H++bLsMvnY9GBQ==
+"@brydge-network/widget@^1.4.6":
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/@brydge-network/widget/-/widget-1.4.6.tgz#47c8a8207d9adfac503e35fdfbdf6a5a9e81d366"
+  integrity sha512-0iuPk674D5jqGz39lo8VlGv1bJZVCXjuktez0/ibic8biB7+1wNDHDbcQE7zPSwowl7jrlTs9NxVVDrthrX88w==
   dependencies:
     "@babel/runtime" "^7.17.0"
-    "@brydge-network/direct-nft-protocol" "^1.0.4"
+    "@brydge-network/direct-nft-protocol" "^1.1.0"
     "@chakra-ui/react" "^2.0.2"
     "@emotion/react" "^11.9.0"
     "@emotion/styled" "^11.8.1"

@@ -6,7 +6,7 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"@brydge-network/widget": "^1.3.0",
+		"@brydge-network/widget": "^1.4.6",
 		"@usedapp/core": "^1.0.6",
 		"@walletconnect/ethereum-provider": "^1.7.8",
 		"@web3-react/metamask": "^8.0.0-beta.0",

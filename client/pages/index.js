@@ -4,7 +4,6 @@ import { ethers } from 'ethers'
 import { useEthers } from '@usedapp/core'
 import { BrydgeWidget } from '@brydge-network/widget'
 
-
 import NFT from '../../build/contracts/BrydgeCollection.json'
 import uriList from '../../metadata/data.json'
 
@@ -13,19 +12,33 @@ const MintPage = () => {
 	const [currentAccount, setCurrentAccount] = useState('')
 	const { library } = useEthers()
 	const idOfNFTToBuy = 1
+	const humanReadablePrice = 100
+	const outputToken = '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' //polygon usdc
 
-	function encodedCalls(nftId){
+	// function encodedCalls(nftId) {
+	// 	const mintableContract = NFT.abi
+	// 	const mintableContractInterface = new ethers.utils.Interface(mintableContract);
+	// 	const mintPrice = ethers.utils.parseEther(humanReadablePrice.toString())
+	// 	const nftUri = uriList[nftId]
+	// 	const mintableContractCalldata = mintableContractInterface.encodeFunctionData('mintBrydgeNFT', [nftUri]);
+	// 	const calls = [
+	// 		{ _to: nftContractAddress, _value: mintPrice, _calldata: mintableContractCalldata },
+	// 	];
+	// 	console.log('calls: ', calls)
+	// 	return calls
+	// }
+	function encodedCalls(nftId) {
 		const mintableContract = NFT.abi
 		const mintableContractInterface = new ethers.utils.Interface(mintableContract);
-		const mintPrice = ethers.utils.parseEther("0.001")
+		const mintPrice = ethers.utils.parseEther(humanReadablePrice.toString())
 		const nftUri = uriList[nftId]
-		const mintableContractCalldata = mintableContractInterface.encodeFunctionData('mintBrydgeNFT', [nftUri]);
+		const mintableContractCalldata = mintableContractInterface.encodeFunctionData('mintWithERC20', [nftUri]);
 		const calls = [
 			{ _to: nftContractAddress, _value: mintPrice, _calldata: mintableContractCalldata },
-		  ];
+		];
+		console.log('calls: ', calls)
 		return calls
 	}
-
 
 	// Calls Metamask to connect wallet on clicking Connect Wallet button
 	const connectWallet = async () => {
@@ -59,7 +72,7 @@ const MintPage = () => {
 			console.log('Error connecting to metamask', error)
 		}
 	}
-	
+
 	return (
 		<div className='flex flex-col items-center pt-32 bg-[#0B132B] text-[#d3d3d3] min-h-screen'>
 			<div className='trasition hover:rotate-180 hover:scale-105 transition duration-500 ease-in-out'>
@@ -84,19 +97,34 @@ const MintPage = () => {
 					Connect Wallet
 				</button>
 			) : (
+				// 	<BrydgeWidget
+				// 	theme={'darkTheme'}
+				//     jsonRpcEndpoints={{
+				//       1: `https://mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043`,
+				//       137: 'https://polygon-mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043',
+				//     }}
+				// 	calls={encodedCalls(idOfNFTToBuy)}
+				//     provider={library}
+				//     outputTokenAddress='NATIVE'
+				//     price={0.001}
+				//     title='Mint Brydge Tutorial NFT'
+				//     destinationChainId={137}
+				//   />
 				<BrydgeWidget
-				theme={'darkTheme'}
-                jsonRpcEndpoints={{
-                  1: `https://mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043`,
-                  137: 'https://polygon-mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043',
-                }}
-				calls={encodedCalls(idOfNFTToBuy)}
-                provider={library}
-                outputTokenAddress='NATIVE'
-                price={0.001}
-                title='Mint Brydge Tutorial NFT'
-                destinationChainId={137}
-              />
+					jsonRpcEndpoints={{
+						1: `https://mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043`,
+						137: 'https://polygon-mainnet.infura.io/v3/d3c71913403e47b4ac4813c7adb96043',
+					}}
+					calls={encodedCalls(idOfNFTToBuy)}
+					provider={library}
+					outputTokenAddress={outputToken}
+					price={humanReadablePrice}
+					title='Mint Brydge Tutorial NFT'
+					destinationChainId={137}
+					collectionAddress={nftContractAddress}
+					tokenId={idOfNFTToBuy}
+					darkMode
+					/>
 			)}
 			{miningStatus === 1 ? (
 				<h2 className='text-3xl font-bold mb-20 mt-12'>
